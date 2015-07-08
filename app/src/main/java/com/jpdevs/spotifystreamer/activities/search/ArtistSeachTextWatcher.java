@@ -1,4 +1,4 @@
-package com.jpdevs.spotifystreamer;
+package com.jpdevs.spotifystreamer.activities.search;
 
 
 import android.text.Editable;

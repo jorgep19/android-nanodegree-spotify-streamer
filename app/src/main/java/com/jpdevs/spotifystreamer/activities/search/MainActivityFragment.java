@@ -1,4 +1,4 @@
-package com.jpdevs.spotifystreamer;
+package com.jpdevs.spotifystreamer.activities.search;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.jpdevs.spotifystreamer.spotify.ArtistsSearchTask;
+import com.jpdevs.spotifystreamer.R;
+import com.jpdevs.spotifystreamer.spotify.SpotifyController;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.jpdevs.spotifystreamer;
+package com.jpdevs.spotifystreamer.spotify;
 
 public class SpotifyController {
     private static final String TAG = SpotifyController.class.getName();

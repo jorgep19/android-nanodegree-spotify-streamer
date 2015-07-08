@@ -1,4 +1,4 @@
-package com.jpdevs.spotifystreamer;
+package com.jpdevs.spotifystreamer.spotify;
 
 import android.os.AsyncTask;
 import android.text.TextUtils;
