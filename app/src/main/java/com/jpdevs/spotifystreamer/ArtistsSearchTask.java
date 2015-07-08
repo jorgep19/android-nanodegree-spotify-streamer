@@ -36,7 +36,7 @@ public class ArtistsSearchTask extends AsyncTask<String, Void, List<Artist>> {
                 Log.i(TAG, "found " + a.name);
             }
         } else {
-            
+
             artists = new ArrayList<>();
             Log.i(TAG, "No Matches ");
         }

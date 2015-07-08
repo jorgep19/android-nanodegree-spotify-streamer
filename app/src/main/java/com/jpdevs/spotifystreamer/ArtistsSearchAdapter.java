@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,20 +31,28 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
 
     @Override
     public void onBindViewHolder(ArtistViewHolder viewHolder, int i) {
-        Artist artist = mArtists.get(i);
+        final Artist artist = mArtists.get(i);
         viewHolder.mTVArtistName.setText(artist.name);
+        viewHolder.mRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Clicked: " + artist.name, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mCount;
+        return mCount; 
     }
 
     public static class ArtistViewHolder extends RecyclerView.ViewHolder {
+        public View mRootView;
         public TextView mTVArtistName;
 
         public ArtistViewHolder(View rootView) {
             super(rootView);
+            mRootView = rootView;
             mTVArtistName = (TextView) rootView.findViewById(R.id.artist_name);
         }
     }
