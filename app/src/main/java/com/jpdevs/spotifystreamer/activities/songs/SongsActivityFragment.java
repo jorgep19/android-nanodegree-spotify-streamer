@@ -8,13 +8,9 @@ import android.view.ViewGroup;
 
 import com.jpdevs.spotifystreamer.R;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class SongsActivityFragment extends Fragment {
 
-    public SongsActivityFragment() {
-    }
+    public SongsActivityFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

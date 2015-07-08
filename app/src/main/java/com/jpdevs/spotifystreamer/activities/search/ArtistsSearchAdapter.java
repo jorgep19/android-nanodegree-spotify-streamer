@@ -1,5 +1,6 @@
 package com.jpdevs.spotifystreamer.activities.search;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jpdevs.spotifystreamer.R;
+import com.jpdevs.spotifystreamer.activities.songs.SongsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,8 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
         viewHolder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Clicked: " + artist.name, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), SongsActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
     }
