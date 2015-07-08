@@ -14,7 +14,7 @@ import java.util.List;
 
 import kaaes.spotify.webapi.android.models.Track;
 
-public class SongsActivity extends AppCompatActivity {
+public class TracksActivity extends AppCompatActivity {
     public static final String EXTRA_ARTIST_ID = "artist_id";
 
     @Override
@@ -26,8 +26,10 @@ public class SongsActivity extends AppCompatActivity {
         String artistId = intent.getStringExtra(EXTRA_ARTIST_ID);
         new SpotifyController().geTopTracksTask(new ArtistTopSongsTask.TopSongsListener() {
             @Override
-            public void reportTopSongs(List<Track> artistsFound) {
-
+            public void reportTopSongs(List<Track> topTracks) {
+                ((TracksActivityFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.frag_top_tracks))
+                        .setTrackst(topTracks.toArray(new Track[topTracks.size()]));
             }
         }).execute(artistId);
     }

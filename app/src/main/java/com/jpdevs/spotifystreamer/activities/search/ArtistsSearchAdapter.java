@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jpdevs.spotifystreamer.R;
-import com.jpdevs.spotifystreamer.activities.songs.SongsActivity;
+import com.jpdevs.spotifystreamer.activities.songs.TracksActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,8 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
         viewHolder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SongsActivity.class);
-                intent.putExtra(SongsActivity.EXTRA_ARTIST_ID, artist.id);
+                Intent intent = new Intent(v.getContext(), TracksActivity.class);
+                intent.putExtra(TracksActivity.EXTRA_ARTIST_ID, artist.id);
                 v.getContext().startActivity(intent);
             }
         });
@@ -50,6 +49,12 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
     @Override
     public int getItemCount() {
         return mCount; 
+    }
+
+    public void updateArtists(List<Artist> artists) {
+        mArtists = artists;
+        mCount = mArtists.size();
+        notifyDataSetChanged();
     }
 
     public static class ArtistViewHolder extends RecyclerView.ViewHolder {
@@ -61,11 +66,5 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
             mRootView = rootView;
             mTVArtistName = (TextView) rootView.findViewById(R.id.artist_name);
         }
-    }
-
-    public void updateArtists(List<Artist> artists) {
-        mArtists = artists;
-        mCount = mArtists.size();
-        notifyDataSetChanged();
     }
 }
