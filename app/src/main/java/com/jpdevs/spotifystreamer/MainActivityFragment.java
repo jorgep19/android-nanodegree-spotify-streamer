@@ -53,7 +53,7 @@ public class MainActivityFragment extends Fragment {
                             mSearchResults.setVisibility(View.GONE);
                         }
                     }
-                }).execute();
+                }).execute(query);
             }
         }));
 

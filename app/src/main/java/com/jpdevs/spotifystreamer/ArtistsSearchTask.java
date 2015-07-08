@@ -1,9 +1,10 @@
 package com.jpdevs.spotifystreamer;
 
-
 import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
@@ -24,13 +25,20 @@ public class ArtistsSearchTask extends AsyncTask<String, Void, List<Artist>> {
 
     @Override
     protected List<Artist> doInBackground(String... params) {
+        List<Artist> artists;
         SpotifyApi api = new SpotifyApi();
 
-        ArtistsPager results = api.getService().searchArtists("foo fighters");
-        List<Artist> artists = results.artists.items;
+        if(params.length > 0 && !TextUtils.isEmpty(params[0])) {
+            ArtistsPager results = api.getService().searchArtists(params[0]);
+            artists = results.artists.items;
 
-        for (Artist a : artists) {
-            Log.i(TAG, "found " + a.name);
+            for (Artist a : artists) {
+                Log.i(TAG, "found " + a.name);
+            }
+        } else {
+            
+            artists = new ArrayList<>();
+            Log.i(TAG, "No Matches ");
         }
 
         return artists;
