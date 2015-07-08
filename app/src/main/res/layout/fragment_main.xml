@@ -18,12 +18,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_results"
         android:scrollbars="vertical"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/no_results"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/no_search_results" />

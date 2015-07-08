@@ -6,7 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import kaaes.spotify.webapi.android.models.Artist;
+
 public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdapter.ArtistViewHolder> {
+    private List<Artist> mArtists;
+    private int mCount;
+
+    public ArtistsSearchAdapter() {
+        mArtists = new ArrayList<>();
+        mCount = 0;
+    }
+
     @Override
     public ArtistViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View rootView = LayoutInflater.from(parent.getContext())
@@ -17,12 +30,13 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
 
     @Override
     public void onBindViewHolder(ArtistViewHolder viewHolder, int i) {
-        viewHolder.mTVArtistName.setText("Someone");
+        Artist artist = mArtists.get(i);
+        viewHolder.mTVArtistName.setText(artist.name);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return mCount;
     }
 
     public static class ArtistViewHolder extends RecyclerView.ViewHolder {
@@ -34,7 +48,9 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
         }
     }
 
-    public void updateArtists() {
-
+    public void updateArtists(List<Artist> artists) {
+        mArtists = artists;
+        mCount = mArtists.size();
+        notifyDataSetChanged();
     }
 }
