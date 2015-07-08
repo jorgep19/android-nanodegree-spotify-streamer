@@ -2,6 +2,7 @@ package com.jpdevs.spotifystreamer;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ public class MainActivityFragment extends Fragment {
 
     private ImageView mNoResults;
     private RecyclerView mSearchResults;
-
+    private ArtistsSearchAdapter mSearchAdapter;
 
     public MainActivityFragment() {}
 
@@ -25,10 +26,27 @@ public class MainActivityFragment extends Fragment {
         EditText searchBox = (EditText) rootView.findViewById(R.id.search_box);
         mNoResults = (ImageView) rootView.findViewById(R.id.no_results);
         mSearchResults = (RecyclerView) rootView.findViewById(R.id.search_results);
-        mSearchResults.setAdapter(new ArtistsSearchAdapter());
+        mSearchResults.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mSearchAdapter = new ArtistsSearchAdapter();
+        mSearchResults.setAdapter(mSearchAdapter);
 
-        searchBox.addTextChangedListener(new ArtistSeachTextWatcher());
+        searchBox.addTextChangedListener(
+                new ArtistSeachTextWatcher(new ArtistSeachTextWatcher.SearchQueryListener() {
+            @Override
+            public void performSearch(String query) {
+
+            }
+        }));
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        mNoResults = null;
+        mSearchResults = null;
+        mSearchAdapter = null;
     }
 }
