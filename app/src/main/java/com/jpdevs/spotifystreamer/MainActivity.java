@@ -1,17 +1,9 @@
 package com.jpdevs.spotifystreamer;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.List;
-
-import kaaes.spotify.webapi.android.SpotifyApi;
-import kaaes.spotify.webapi.android.models.Artist;
-import kaaes.spotify.webapi.android.models.ArtistsPager;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
@@ -21,8 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SearchSpotifyTask searchTask = new SearchSpotifyTask();
-        searchTask.execute();
+        new SpotifyController().getArtistsSearchTask().execute();
     }
 
 
@@ -46,22 +37,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public class SearchSpotifyTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            SpotifyApi api = new SpotifyApi();
-
-            ArtistsPager results = api.getService().searchArtists("foo fighters");
-            List<Artist> artists = results.artists.items;
-
-            for (Artist a : artists) {
-                Log.i(TAG, "found " + a.name);
-            }
-
-            return null;
-        }
     }
 }
