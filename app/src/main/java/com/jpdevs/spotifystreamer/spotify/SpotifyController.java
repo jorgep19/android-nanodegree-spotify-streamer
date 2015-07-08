@@ -7,7 +7,7 @@ public class SpotifyController {
         return new ArtistsSearchTask(listener);
     }
 
-    public ArtistTopSongsTask getArtistsSearchTask(ArtistTopSongsTask.TopSongsListener listener) {
+    public ArtistTopSongsTask geTopTracksTask(ArtistTopSongsTask.TopSongsListener listener) {
         return new ArtistTopSongsTask(listener);
     }
 }
