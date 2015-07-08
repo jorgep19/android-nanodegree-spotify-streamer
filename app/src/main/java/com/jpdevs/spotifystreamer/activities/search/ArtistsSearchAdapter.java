@@ -41,6 +41,7 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SongsActivity.class);
+                intent.putExtra(SongsActivity.EXTRA_ARTIST_ID, artist.id);
                 v.getContext().startActivity(intent);
             }
         });

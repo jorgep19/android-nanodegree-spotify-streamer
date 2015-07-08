@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import com.jpdevs.spotifystreamer.R;
 
 public class SongsActivity extends AppCompatActivity {
+    public static final String EXTRA_ARTIST_ID = "artist_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
