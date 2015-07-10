@@ -1,4 +1,4 @@
-package com.jpdevs.spotifystreamer.activities.search;
+package com.jpdevs.spotifystreamer.utils;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;

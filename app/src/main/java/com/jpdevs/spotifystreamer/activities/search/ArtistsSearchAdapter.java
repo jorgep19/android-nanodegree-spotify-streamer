@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.activities.songs.TracksActivity;
+import com.jpdevs.spotifystreamer.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
             int imgIndex = artist.images.size() > 1 ? artist.images.size() - 2 : artist.images.size() - 1;
             Picasso.with(viewHolder.mRootView.getContext())
                     .load(artist.images.get(imgIndex).url)
+                    .transform(new CircleTransform())
                     .into(viewHolder.mArtistImg);
         } else {
             viewHolder.mArtistImg.setImageResource(android.R.color.transparent);

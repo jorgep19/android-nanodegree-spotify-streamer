@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.jpdevs.spotifystreamer.spotify.ArtistsSearchTask;
 import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.spotify.SpotifyController;
+import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jpdevs.spotifystreamer.R;
-import com.jpdevs.spotifystreamer.activities.search.SimpleDividerItemDecoration;
+import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 
 import kaaes.spotify.webapi.android.models.Track;
 

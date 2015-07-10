@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.R;
+import com.jpdevs.spotifystreamer.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import kaaes.spotify.webapi.android.models.Artist;
@@ -38,6 +39,7 @@ public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.Trac
                                 track.album.images.size() - 1;
             Picasso.with(viewHolder.mAlbumImg.getContext())
                     .load(track.album.images.get(imgIndex).url)
+                    .transform(new CircleTransform())
                     .into(viewHolder.mAlbumImg);
         } else {
             viewHolder.mAlbumImg.setImageResource(android.R.color.transparent);
