@@ -20,7 +20,7 @@ public class TracksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_songs);
+        setContentView(R.layout.activity_tracks);
 
         Intent intent = getIntent();
         String artistId = intent.getStringExtra(EXTRA_ARTIST_ID);

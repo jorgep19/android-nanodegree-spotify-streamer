@@ -4,10 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.R;
+import com.squareup.picasso.Picasso;
 
+import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.TrackViewHolder> {
@@ -29,6 +32,14 @@ public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.Trac
     public void onBindViewHolder(TrackViewHolder viewHolder, int i) {
         Track track = mTracks[i];
         viewHolder.mTVTrackName.setText(track.name);
+        if(track.album.images.size() > 0) {
+            int imgIndex = track.album.images.size() > 1 ?
+                                track.album.images.size() - 2 :
+                                track.album.images.size() - 1;
+            Picasso.with(viewHolder.mAlbumImg.getContext())
+                    .load(track.album.images.get(imgIndex).url)
+                    .into(viewHolder.mAlbumImg);
+        }
     }
 
     @Override
@@ -42,10 +53,12 @@ public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.Trac
     }
 
     public static class TrackViewHolder extends RecyclerView.ViewHolder {
+        public ImageView mAlbumImg;
         public TextView mTVTrackName;
 
         public TrackViewHolder(View rootView) {
             super(rootView);
+            mAlbumImg = (ImageView) rootView.findViewById(R.id.album_img);
             mTVTrackName = (TextView) rootView.findViewById(R.id.track_name);
         }
     }
