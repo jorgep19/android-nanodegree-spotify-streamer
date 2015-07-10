@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.jpdevs.spotifystreamer.spotify.ArtistsSearchTask;
@@ -32,7 +32,7 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        EditText searchBox = (EditText) rootView.findViewById(R.id.search_box);
+        SearchView searchBox = (SearchView) rootView.findViewById(R.id.search_box);
         mNoResults = (ImageView) rootView.findViewById(R.id.no_results);
         mSearchResults = (RecyclerView) rootView.findViewById(R.id.search_results);
         mSearchResults.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -40,8 +40,7 @@ public class MainActivityFragment extends Fragment {
         mSearchResults.setAdapter(mSearchAdapter);
         mSpotifyController = new SpotifyController();
 
-        searchBox.addTextChangedListener(
-                new ArtistSeachTextWatcher(new ArtistSeachTextWatcher.SearchQueryListener() {
+        searchBox.setOnQueryTextListener(new ArtistQueryListener(new ArtistQueryListener.SearchQueryListener() {
             @Override
             public void performSearch(String query) {
                 mSpotifyController.getArtistsSearchTask(new ArtistsSearchTask.ArtistSearchListener() {
