@@ -36,6 +36,8 @@ public class MainActivityFragment extends Fragment {
         mNoResults = (ImageView) rootView.findViewById(R.id.no_results);
         mSearchResults = (RecyclerView) rootView.findViewById(R.id.search_results);
         mSearchResults.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mSearchResults.addItemDecoration(new SimpleDividerItemDecoration(
+                getActivity().getResources().getDrawable(R.drawable.line_divider)));
         mSearchAdapter = new ArtistsSearchAdapter();
         mSearchResults.setAdapter(mSearchAdapter);
         mSpotifyController = new SpotifyController();

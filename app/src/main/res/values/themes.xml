@@ -1,0 +1,10 @@
+<resources>
+    <!-- inherit from the support material theme -->
+    <style name="Theme.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- app palette -->
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorPrimaryDark">@color/blue_700</item>
+        <item name="colorAccent">@color/orange_500</item>
+        <item name="android:windowBackground">@color/blue_100</item>
+    </style>
+</resources>
