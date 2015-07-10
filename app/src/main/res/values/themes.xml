@@ -6,9 +6,10 @@
         <item name="colorPrimaryDark">@color/dark_teal</item>
         <item name="colorAccent">@color/lime</item>
         <item name="android:windowBackground">@color/dark_blue</item>
-        <item name="searchViewStyle">@style/Theme.AppTheme.SearchView</item>
+
         <item name="android:editTextColor">@android:color/white</item>
         <item name="android:textColorHint">@android:color/white</item>
+        <item name="searchViewStyle">@style/Theme.AppTheme.SearchView</item>
     </style>
 
     <style name="Theme.NoBarAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -18,9 +19,7 @@
         <item name="android:windowBackground">@color/dark_blue</item>
     </style>
 
-
     <style name="Theme.AppTheme.SearchView" parent="Widget.AppCompat.SearchView">
-        <!-- app palette -->
         <item name="searchIcon">@drawable/ic_search</item>
         <item name="closeIcon">@drawable/ic_clear</item>
     </style>

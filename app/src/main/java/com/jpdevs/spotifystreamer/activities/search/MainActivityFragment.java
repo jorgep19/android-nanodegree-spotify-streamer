@@ -1,5 +1,6 @@
 package com.jpdevs.spotifystreamer.activities.search;
 
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,9 +18,12 @@ import com.jpdevs.spotifystreamer.spotify.SpotifyController;
 import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 
 public class MainActivityFragment extends Fragment {
+    private static final String DATA_SEARCH_RESULTS = "current_artists_matching";
+
+    private ParcelableArtist[] mSearchResults;
 
     private ImageView mNoResults;
-    private RecyclerView mSearchResults;
+    private RecyclerView mSearchResultsList;
     private ArtistsSearchAdapter mSearchAdapter;
     private SpotifyController mSpotifyController;
 
@@ -31,33 +35,58 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         SearchView searchBox = (SearchView) rootView.findViewById(R.id.search_box);
-
         mNoResults = (ImageView) rootView.findViewById(R.id.no_results);
-        mSearchResults = (RecyclerView) rootView.findViewById(R.id.search_results);
-        mSearchResults.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mSearchResults.addItemDecoration(new SimpleDividerItemDecoration(
-                getActivity().getResources().getDrawable(R.drawable.line_divider)));
+        mSearchResultsList = (RecyclerView) rootView.findViewById(R.id.search_results);
+        mSearchResultsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mSearchResultsList.addItemDecoration(new SimpleDividerItemDecoration(
+                    getActivity().getResources().getDrawable(R.drawable.line_divider)));
         mSearchAdapter = new ArtistsSearchAdapter();
-        mSearchResults.setAdapter(mSearchAdapter);
+        mSearchResultsList.setAdapter(mSearchAdapter);
         mSpotifyController = new SpotifyController();
 
+        final boolean isRecreating = savedInstanceState != null;
+        if(isRecreating){
+            Parcelable[] parcels = savedInstanceState.getParcelableArray(DATA_SEARCH_RESULTS);
+
+            if(parcels != null) {
+                mSearchResults = new ParcelableArtist[parcels.length];
+                for (int i = 0; i < parcels.length; ++i){
+                    mSearchResults[i] = (ParcelableArtist) parcels[i];
+                }
+            }
+        }
+
+
         searchBox.setOnQueryTextListener(new ArtistQueryListener(new ArtistQueryListener.SearchQueryListener() {
+            private boolean flag = isRecreating;
+
             @Override
             public void performSearch(String query) {
+                if (flag) {
+                    flag = false;
+                    update(mSearchResults);
+                    return;
+                }
+
                 mSpotifyController.getArtistsSearchTask(new ArtistsSearchTask.ArtistSearchListener() {
                     @Override
                     public void reportSearchResults(ParcelableArtist[] artistsFound) {
-                        if (artistsFound.length > 0) {
-                            mNoResults.setVisibility(View.GONE);
-                            mSearchResults.setVisibility(View.VISIBLE);
-
-                            mSearchAdapter.updateArtists(artistsFound);
-                        } else {
-                            mNoResults.setVisibility(View.VISIBLE);
-                            mSearchResults.setVisibility(View.GONE);
-                        }
+                        mSearchResults = artistsFound;
+                        update(artistsFound);
                     }
                 }).execute(query);
+            }
+
+            private void update(ParcelableArtist[] artistsFound) {
+                if (artistsFound.length > 0) {
+                    mNoResults.setVisibility(View.GONE);
+                    mSearchResultsList.setVisibility(View.VISIBLE);
+
+                    mSearchAdapter.updateArtists(artistsFound);
+                } else {
+                    mNoResults.setVisibility(View.VISIBLE);
+                    mSearchResultsList.setVisibility(View.GONE);
+                }
             }
         }));
 
@@ -65,11 +94,16 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArray(DATA_SEARCH_RESULTS, mSearchResults);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
 
         mNoResults = null;
-        mSearchResults = null;
+        mSearchResultsList = null;
         mSearchAdapter = null;
     }
 }
