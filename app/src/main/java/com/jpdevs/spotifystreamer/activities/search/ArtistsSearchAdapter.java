@@ -15,10 +15,6 @@ import com.jpdevs.spotifystreamer.model.ParcelableArtist;
 import com.jpdevs.spotifystreamer.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import kaaes.spotify.webapi.android.models.Artist;
 
 public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdapter.ArtistViewHolder> {
     private ParcelableArtist[] mArtists;

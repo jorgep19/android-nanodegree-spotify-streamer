@@ -25,6 +25,7 @@ import com.squareup.picasso.Transformation;
 
 /**
  * Created by julian on 13/6/21.
+ * https://gist.github.com/julianshen/5829333
  */
 public class CircleTransform implements Transformation {
     @Override

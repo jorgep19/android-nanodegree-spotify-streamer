@@ -105,5 +105,6 @@ public class MainActivityFragment extends Fragment {
         mNoResults = null;
         mSearchResultsList = null;
         mSearchAdapter = null;
+        mSpotifyController = null;
     }
 }
