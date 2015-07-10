@@ -20,7 +20,8 @@
         </activity>
         <activity
             android:name=".activities.songs.TracksActivity"
-            android:label="@string/title_activity_songs" >
+            android:theme="@style/Theme.NoBarAppTheme"
+            android:label="@string/title_activity_songs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.search.MainActivity" />

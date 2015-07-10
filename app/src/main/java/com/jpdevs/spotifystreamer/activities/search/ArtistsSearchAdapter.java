@@ -53,6 +53,10 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), TracksActivity.class);
                 intent.putExtra(TracksActivity.EXTRA_ARTIST_ID, artist.id);
+                if(artist.images.size() > 0) {
+                    intent.putExtra(TracksActivity.EXTRA_ARTIST_IMG, artist.images.get(artist.images.size() - 1).url);
+                }
+                intent.putExtra(TracksActivity.EXTRA_ARTIS_NAME, artist.name);
                 v.getContext().startActivity(intent);
             }
         });
