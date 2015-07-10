@@ -4,4 +4,5 @@
     <string name="no_search_results">No Results Found</string>
         <string name="title_activity_songs">SongsActivity</string>
     <string name="search_hint">Search</string>
+    <string name="placeholder">Placeholder</string>
 </resources>

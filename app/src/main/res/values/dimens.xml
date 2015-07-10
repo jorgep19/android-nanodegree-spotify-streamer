@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- List tile dimensions from the material design specs -->
+    <!-- https://www.google.com/design/spec/components/lists.html#lists-specs section 'Avatar with text and icon'-->
+    <dimen name="list_vertical_margin">8dp</dimen>
+    <dimen name="tile_font_size">16sp</dimen>
+    <dimen name="tile_height">56dp</dimen>
+    <dimen name="img_max_width">56dp</dimen> <!-- 72 - 16 -->
+    <dimen name="tile_text_top_padding">20dp</dimen>
 </resources>

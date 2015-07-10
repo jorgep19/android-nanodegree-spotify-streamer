@@ -22,6 +22,8 @@
         android:id="@+id/search_results"
         android:scrollbars="vertical"
         android:visibility="gone"
+        android:layout_marginTop="@dimen/list_vertical_margin"
+        android:layout_marginBottom="@dimen/list_vertical_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

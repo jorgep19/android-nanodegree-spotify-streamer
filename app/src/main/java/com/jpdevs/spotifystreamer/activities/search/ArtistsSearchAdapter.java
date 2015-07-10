@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.activities.songs.TracksActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,12 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
     public void onBindViewHolder(ArtistViewHolder viewHolder, int i) {
         final Artist artist = mArtists.get(i);
         viewHolder.mTVArtistName.setText(artist.name);
+        if(artist.images.size() > 0) {
+            int imgIndex = artist.images.size() > 1 ? artist.images.size() - 2 : artist.images.size() - 1;
+            Picasso.with(viewHolder.mRootView.getContext())
+                    .load(artist.images.get(imgIndex).url)
+                    .into(viewHolder.mArtistImg);
+        }
         viewHolder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +67,13 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
 
     public static class ArtistViewHolder extends RecyclerView.ViewHolder {
         public View mRootView;
+        public ImageView mArtistImg;
         public TextView mTVArtistName;
 
         public ArtistViewHolder(View rootView) {
             super(rootView);
             mRootView = rootView;
+            mArtistImg = (ImageView) rootView.findViewById(R.id.artist_img);
             mTVArtistName = (TextView) rootView.findViewById(R.id.artist_name);
         }
     }
