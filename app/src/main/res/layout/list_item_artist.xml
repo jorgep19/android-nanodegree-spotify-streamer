@@ -15,6 +15,7 @@
         android:id="@+id/artist_name"
         android:textSize="@dimen/tile_font_size"
         android:paddingLeft="@dimen/tile_text_left_padding"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </FrameLayout>

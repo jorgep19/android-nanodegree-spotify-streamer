@@ -3,9 +3,6 @@ package com.jpdevs.spotifystreamer.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.jpdevs.spotifystreamer.utils.CircleTransform;
-import com.squareup.picasso.Picasso;
-
 import kaaes.spotify.webapi.android.models.Artist;
 
 public class ParcelableArtist implements Parcelable {

@@ -2,16 +2,26 @@
     <!-- inherit from the support material theme -->
     <style name="Theme.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- app palette -->
-        <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryDark">@color/blue_700</item>
-        <item name="colorAccent">@color/orange_500</item>
-        <item name="android:windowBackground">@color/blue_100</item>
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryDark">@color/dark_teal</item>
+        <item name="colorAccent">@color/lime</item>
+        <item name="android:windowBackground">@color/dark_blue</item>
+        <item name="searchViewStyle">@style/Theme.AppTheme.SearchView</item>
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
     </style>
 
     <style name="Theme.NoBarAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryDark">@color/blue_700</item>
-        <item name="colorAccent">@color/orange_500</item>
-        <item name="android:windowBackground">@color/blue_100</item>
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryDark">@color/dark_teal</item>
+        <item name="colorAccent">@color/lime</item>
+        <item name="android:windowBackground">@color/dark_blue</item>
+    </style>
+
+
+    <style name="Theme.AppTheme.SearchView" parent="Widget.AppCompat.SearchView">
+        <!-- app palette -->
+        <item name="searchIcon">@drawable/ic_search</item>
+        <item name="closeIcon">@drawable/ic_clear</item>
     </style>
 </resources>

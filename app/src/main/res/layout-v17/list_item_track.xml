@@ -18,6 +18,7 @@
         android:paddingStart="@dimen/tile_text_left_padding"
         android:paddingLeft="@dimen/tile_text_left_padding"
         android:layout_gravity="center_vertical"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </FrameLayout>

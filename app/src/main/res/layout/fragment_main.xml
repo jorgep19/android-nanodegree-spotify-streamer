@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         app:iconifiedByDefault="false"
+        android:textColor="@color/white"
         app:queryHint="@string/search_hint"/>
 
     <android.support.v7.widget.RecyclerView

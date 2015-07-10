@@ -16,10 +16,6 @@ import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.spotify.SpotifyController;
 import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 
-import java.util.List;
-
-import kaaes.spotify.webapi.android.models.Artist;
-
 public class MainActivityFragment extends Fragment {
 
     private ImageView mNoResults;
@@ -35,6 +31,7 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         SearchView searchBox = (SearchView) rootView.findViewById(R.id.search_box);
+
         mNoResults = (ImageView) rootView.findViewById(R.id.no_results);
         mSearchResults = (RecyclerView) rootView.findViewById(R.id.search_results);
         mSearchResults.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -3,8 +3,6 @@ package com.jpdevs.spotifystreamer.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.squareup.picasso.Picasso;
-
 import kaaes.spotify.webapi.android.models.Track;
 
 public class ParcelableTrack implements Parcelable {
