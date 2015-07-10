@@ -43,6 +43,8 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
             Picasso.with(viewHolder.mRootView.getContext())
                     .load(artist.images.get(imgIndex).url)
                     .into(viewHolder.mArtistImg);
+        } else {
+            viewHolder.mArtistImg.setImageResource(android.R.color.transparent);
         }
         viewHolder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override

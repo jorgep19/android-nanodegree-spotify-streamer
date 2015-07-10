@@ -39,6 +39,8 @@ public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.Trac
             Picasso.with(viewHolder.mAlbumImg.getContext())
                     .load(track.album.images.get(imgIndex).url)
                     .into(viewHolder.mAlbumImg);
+        } else {
+            viewHolder.mAlbumImg.setImageResource(android.R.color.transparent);
         }
     }
 
