@@ -14,4 +14,10 @@
     <color name="gray_300">#E0E0E0</color>
     <color name="gray_100">#F5F5F5</color>
     <color name="gray_50">#FaFAFA</color>
+
+    <color name="teal">#28D5D7</color>
+    <color name="dark_teal">#177882</color>
+    <color name="dark_blue">#104655</color>
+    <color name="lime">#57DAA0</color>
+    <color name="dark_lime">#4AAf82</color>
 </resources>

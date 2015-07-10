@@ -41,7 +41,7 @@ public class ParcelableArtist implements Parcelable {
 
         if (artist.images.size() != 0) {
             int iconIndex = artist.images.size() > 1 ? artist.images.size() - 2 : artist.images.size() - 1;
-            int profileIndex = artist.images.size() > 1 ? 1 : 0;
+            int profileIndex = 0;
             mIconUrl = artist.images.get(iconIndex).url;
             mProfileImgUrl = artist.images.get(profileIndex).url;
         }

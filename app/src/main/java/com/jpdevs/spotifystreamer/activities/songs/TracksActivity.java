@@ -8,10 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.jpdevs.spotifystreamer.R;
+import com.jpdevs.spotifystreamer.model.ParcelableArtist;
+import com.jpdevs.spotifystreamer.model.ParcelableTrack;
 import com.jpdevs.spotifystreamer.spotify.ArtistTopSongsTask;
 import com.jpdevs.spotifystreamer.spotify.SpotifyController;
 import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
@@ -22,9 +23,7 @@ import java.util.List;
 import kaaes.spotify.webapi.android.models.Track;
 
 public class TracksActivity extends AppCompatActivity {
-    public static final String EXTRA_ARTIST_ID = "artist_id";
-    public static final String EXTRA_ARTIS_NAME = "artist_name";
-    public static final String EXTRA_ARTIST_IMG = "artist_img_url";
+    public static final String EXTRA_ARTIST = "artist_data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,7 @@ public class TracksActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String artistId = intent.getStringExtra(EXTRA_ARTIST_ID);
-        String artistName = intent.getStringExtra(EXTRA_ARTIS_NAME);
-        String artistImgURL = intent.getStringExtra(EXTRA_ARTIST_IMG);
+        ParcelableArtist artist = intent.getParcelableExtra(EXTRA_ARTIST);
 
 
         final RecyclerView tracksList = (RecyclerView) findViewById(R.id.track_list);
@@ -49,10 +46,10 @@ public class TracksActivity extends AppCompatActivity {
         tracksList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         new SpotifyController().geTopTracksTask(new ArtistTopSongsTask.TopSongsListener() {
             @Override
-            public void reportTopSongs(List<Track> topTracks) {
+            public void reportTopSongs(ParcelableTrack[] topTracks) {
 
                 TopTracksAdapter tracksAdapter = new TopTracksAdapter();
-                tracksAdapter.setTracks(topTracks.toArray(new Track[topTracks.size()]));
+                tracksAdapter.setTracks(topTracks);
                 tracksList.setAdapter(tracksAdapter);
 
 
@@ -62,13 +59,13 @@ public class TracksActivity extends AppCompatActivity {
 //                        .findFragmentById(R.id.frag_top_tracks))
 //                        .setTrackst(topTracks.toArray(new Track[topTracks.size()]));
             }
-        }).execute(artistId);
+        }).execute(artist.getId());
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(artistName);
+        collapsingToolbar.setTitle(artist.getName());
 
-        loadBackdrop(artistImgURL);
+        loadBackdrop(artist.getProfileImgUrl());
     }
 
     @Override

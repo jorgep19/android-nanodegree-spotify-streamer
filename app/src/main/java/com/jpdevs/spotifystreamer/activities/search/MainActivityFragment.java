@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.jpdevs.spotifystreamer.model.ParcelableArtist;
 import com.jpdevs.spotifystreamer.spotify.ArtistsSearchTask;
 import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.spotify.SpotifyController;
@@ -48,8 +49,8 @@ public class MainActivityFragment extends Fragment {
             public void performSearch(String query) {
                 mSpotifyController.getArtistsSearchTask(new ArtistsSearchTask.ArtistSearchListener() {
                     @Override
-                    public void reportSearchResults(List<Artist> artistsFound) {
-                        if (artistsFound.size() > 0) {
+                    public void reportSearchResults(ParcelableArtist[] artistsFound) {
+                        if (artistsFound.length > 0) {
                             mNoResults.setVisibility(View.GONE);
                             mSearchResults.setVisibility(View.VISIBLE);
 

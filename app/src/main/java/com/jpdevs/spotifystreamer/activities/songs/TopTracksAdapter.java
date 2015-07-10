@@ -1,6 +1,7 @@
 package com.jpdevs.spotifystreamer.activities.songs;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.R;
-import com.jpdevs.spotifystreamer.utils.CircleTransform;
+import com.jpdevs.spotifystreamer.model.ParcelableTrack;
 import com.squareup.picasso.Picasso;
 
-import kaaes.spotify.webapi.android.models.Artist;
-import kaaes.spotify.webapi.android.models.Track;
-
 public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.TrackViewHolder> {
-    private Track[] mTracks;
+    private ParcelableTrack[] mTracks;
 
     public TopTracksAdapter() {
-        mTracks = new Track[0];
+        mTracks = new ParcelableTrack[0];
     }
 
     @Override
@@ -31,14 +29,11 @@ public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.Trac
 
     @Override
     public void onBindViewHolder(TrackViewHolder viewHolder, int i) {
-        Track track = mTracks[i];
-        viewHolder.mTVTrackName.setText(track.name);
-        if(track.album.images.size() > 0) {
-            int imgIndex = track.album.images.size() > 1 ?
-                                track.album.images.size() - 2 :
-                                track.album.images.size() - 1;
+        ParcelableTrack track = mTracks[i];
+        viewHolder.mTVTrackName.setText(track.getName());
+        if(!TextUtils.isEmpty(track.getAlbumIconUrl())) {
             Picasso.with(viewHolder.mAlbumImg.getContext())
-                    .load(track.album.images.get(imgIndex).url)
+                    .load(track.getAlbumIconUrl())
                     .into(viewHolder.mAlbumImg);
         } else {
             viewHolder.mAlbumImg.setImageResource(android.R.color.transparent);
@@ -50,7 +45,7 @@ public class TopTracksAdapter extends RecyclerView.Adapter<TopTracksAdapter.Trac
         return mTracks.length;
     }
 
-    public void setTracks(Track[] tracks) {
+    public void setTracks(ParcelableTrack[] tracks) {
         mTracks = tracks;
         notifyDataSetChanged();
     }

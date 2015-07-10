@@ -2,6 +2,7 @@ package com.jpdevs.spotifystreamer.activities.search;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.activities.songs.TracksActivity;
+import com.jpdevs.spotifystreamer.model.ParcelableArtist;
 import com.jpdevs.spotifystreamer.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -19,11 +21,11 @@ import java.util.List;
 import kaaes.spotify.webapi.android.models.Artist;
 
 public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdapter.ArtistViewHolder> {
-    private List<Artist> mArtists;
+    private ParcelableArtist[] mArtists;
     private int mCount;
 
     public ArtistsSearchAdapter() {
-        mArtists = new ArrayList<>();
+        mArtists = new ParcelableArtist[0];
         mCount = 0;
     }
 
@@ -37,12 +39,11 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
 
     @Override
     public void onBindViewHolder(ArtistViewHolder viewHolder, int i) {
-        final Artist artist = mArtists.get(i);
-        viewHolder.mTVArtistName.setText(artist.name);
-        if(artist.images.size() > 0) {
-            int imgIndex = artist.images.size() > 1 ? artist.images.size() - 2 : artist.images.size() - 1;
+        final ParcelableArtist artist = mArtists[i];
+        viewHolder.mTVArtistName.setText(artist.getName());
+        if(!TextUtils.isEmpty(artist.getIconUrl())) {
             Picasso.with(viewHolder.mRootView.getContext())
-                    .load(artist.images.get(imgIndex).url)
+                    .load(artist.getIconUrl())
                     .transform(new CircleTransform())
                     .into(viewHolder.mArtistImg);
         } else {
@@ -52,11 +53,7 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), TracksActivity.class);
-                intent.putExtra(TracksActivity.EXTRA_ARTIST_ID, artist.id);
-                if(artist.images.size() > 0) {
-                    intent.putExtra(TracksActivity.EXTRA_ARTIST_IMG, artist.images.get(artist.images.size() - 1).url);
-                }
-                intent.putExtra(TracksActivity.EXTRA_ARTIS_NAME, artist.name);
+                intent.putExtra(TracksActivity.EXTRA_ARTIST, artist);
                 v.getContext().startActivity(intent);
             }
         });
@@ -67,9 +64,9 @@ public class ArtistsSearchAdapter extends RecyclerView.Adapter<ArtistsSearchAdap
         return mCount; 
     }
 
-    public void updateArtists(List<Artist> artists) {
+    public void updateArtists(ParcelableArtist[] artists) {
         mArtists = artists;
-        mCount = mArtists.size();
+        mCount = mArtists.length;
         notifyDataSetChanged();
     }
 
