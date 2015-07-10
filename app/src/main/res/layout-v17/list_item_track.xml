@@ -9,12 +9,15 @@
         android:id="@+id/album_img"
         android:layout_width="@dimen/icon_dim"
         android:layout_height="@dimen/icon_dim"
+        android:layout_gravity="center_vertical"
         android:contentDescription="@string/placeholder" />
 
     <TextView
         android:id="@+id/track_name"
         android:textSize="@dimen/tile_font_size"
+        android:paddingStart="@dimen/tile_text_left_padding"
         android:paddingLeft="@dimen/tile_text_left_padding"
+        android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </FrameLayout>

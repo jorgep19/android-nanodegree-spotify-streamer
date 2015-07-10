@@ -8,6 +8,6 @@
     <dimen name="list_vertical_margin">8dp</dimen>
     <dimen name="tile_font_size">16sp</dimen>
     <dimen name="tile_height">56dp</dimen>
-    <dimen name="img_max_width">56dp</dimen> <!-- 72 - 16 -->
-    <dimen name="tile_text_top_padding">20dp</dimen>
+    <dimen name="tile_text_left_padding">72dp</dimen>
+    <dimen name="icon_dim">45dp</dimen>
 </resources>
