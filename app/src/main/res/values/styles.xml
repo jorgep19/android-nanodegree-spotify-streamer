@@ -7,7 +7,7 @@
         <item name="android:contentDescription">@string/placeholder</item>
     </style>
 
-    <style name="root_view">
+    <style name="activity_root">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
@@ -23,6 +23,35 @@
         <item name="android:inputType">text</item>
         <item name="searchIcon">@drawable/ic_search</item>
         <item name="closeIcon">@drawable/ic_clear</item>
+    </style>
 
+    <style name="vertical_list">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/list_vertical_margin</item>
+        <item name="android:layout_marginBottom">@dimen/list_vertical_margin</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+    <style name="empty_list_msg_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="list_item_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tile_height</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="list_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/tile_font_size</item>
+        <item name="android:paddingLeft">@dimen/tile_text_left_padding</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

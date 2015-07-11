@@ -34,7 +34,7 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         SearchView searchBox = (SearchView) rootView.findViewById(R.id.search_box);
-        mNoResults = rootView.findViewById(R.id.no_results);
+        mNoResults = rootView.findViewById(R.id.no_results_container);
         mSearchResultsList = (RecyclerView) rootView.findViewById(R.id.search_results);
         mSearchResultsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mSearchResultsList.addItemDecoration(new SimpleDividerItemDecoration(

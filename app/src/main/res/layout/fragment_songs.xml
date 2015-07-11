@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_root">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/track_list"
-        android:scrollbars="vertical"
-        android:layout_marginTop="@dimen/list_vertical_margin"
-        android:layout_marginBottom="@dimen/list_vertical_margin"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@id/track_list"
+        style="@style/vertical_list"/>
 
-    <ImageView
-        android:id="@+id/no_tracks"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/no_search_results" />
+    <LinearLayout
+        android:id="@id/no_results_container"
+        style="@style/empty_list_msg_container">
+        <ImageView
+            android:id="@id/no_results_img"
+            android:src="@drawable/music"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/no_search_results" />
+        <TextView
+            android:id="@id/no_results_msg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </LinearLayout>

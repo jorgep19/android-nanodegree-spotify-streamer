@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/tile_height"
-    android:orientation="horizontal">
+    style="@style/list_item_container">
 
     <ImageView
-        android:id="@+id/album_img"
+        android:id="@id/album_img"
         android:layout_width="@dimen/icon_dim"
-        android:layout_height="@dimen/icon_dim"
-        android:contentDescription="@string/placeholder" />
+        android:layout_height="@dimen/icon_dim" />
 
     <TextView
-        android:id="@+id/track_name"
-        android:textSize="@dimen/tile_font_size"
-        android:paddingLeft="@dimen/tile_text_left_padding"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@id/track_name"
+        style="@style/list_item_text" />
 </FrameLayout>
