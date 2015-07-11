@@ -3,10 +3,12 @@ package com.jpdevs.spotifystreamer.activities.songs;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.jpdevs.spotifystreamer.R;
@@ -74,15 +76,16 @@ public class TracksActivity extends AppCompatActivity {
     }
 
     @Override
-    public Intent getParentActivityIntent () {
-        Intent intent = super.getParentActivityIntent();
-        if(intent == null) {
-            intent = new Intent();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent intent = NavUtils.getParentActivityIntent(this);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                NavUtils.navigateUpTo(this, intent);
+                return true;
         }
-        
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        return intent;
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadBackdrop(String imgUrl) {
