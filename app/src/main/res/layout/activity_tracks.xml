@@ -43,15 +43,19 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/track_list"
-        android:scrollbars="vertical"
-        android:layout_marginTop="@dimen/list_vertical_margin"
-        android:layout_marginBottom="@dimen/list_vertical_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <FrameLayout
+        android:id="@+id/list_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"/>
+
+    <!--<fragment-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/tracks_fragment"-->
+        <!--android:name="com.jpdevs.spotifystreamer.activities.songs.TracksActivityFragment"-->
+        <!--tools:layout="@layout/fragment_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -30,42 +30,28 @@ public class TracksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracks);
 
-
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
+        // retrieve data from the intent
         Intent intent = getIntent();
         ParcelableArtist artist = intent.getParcelableExtra(EXTRA_ARTIST);
 
-
-        final RecyclerView tracksList = (RecyclerView) findViewById(R.id.track_list);
-        tracksList.addItemDecoration(new SimpleDividerItemDecoration(
-                getResources().getDrawable(R.drawable.line_divider)));
-        tracksList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        new SpotifyController().geTopTracksTask(new ArtistTopSongsTask.TopSongsListener() {
-            @Override
-            public void reportTopSongs(ParcelableTrack[] topTracks) {
-
-                TopTracksAdapter tracksAdapter = new TopTracksAdapter();
-                tracksAdapter.setTracks(topTracks);
-                tracksList.setAdapter(tracksAdapter);
-
-
-//                View scroll = findViewById(R.id.scrollView);
-//
-//                ((TracksActivityFragment) getSupportFragmentManager()
-//                        .findFragmentById(R.id.frag_top_tracks))
-//                        .setTrackst(topTracks.toArray(new Track[topTracks.size()]));
-            }
-        }).execute(artist.getId());
-
+        // tool bar setup
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(artist.getName());
 
         loadBackdrop(artist.getProfileImgUrl());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.list_container, TracksActivityFragment.newInstance(artist.getId()))
+                .commit();
+
+//        // setup list from bundle
+//        ((TracksActivityFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.tracks_fragment))
+//                .setTracks(topTracks);
     }
 
     @Override
