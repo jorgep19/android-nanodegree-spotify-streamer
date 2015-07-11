@@ -2,7 +2,10 @@
     <string name="app_name">SpotifyStreamer</string>
     <string name="action_settings">Settings</string>
     <string name="no_search_results">No Results Found</string>
-        <string name="title_activity_songs">SongsActivity</string>
+    <string name="title_activity_songs">SongsActivity</string>
     <string name="search_hint">Search</string>
     <string name="placeholder">Placeholder</string>
+    <string name="lets_search">Let\'s found your favorite artist</string>
+    <string name="no_result_msg">Sorry… We couldn\'t find a match for:</string>
+    <string name="no_tracks_msg">It seem like the couldn\'t find top tracks this time</string>
 </resources>

@@ -13,6 +13,8 @@ import com.jpdevs.spotifystreamer.model.ParcelableTrack;
 import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 
 public class TracksActivityFragment extends Fragment {
+    private View mNoTracksContainer;
+    private RecyclerView mTracksList;
     private TopTracksAdapter mTracksAdapter;
 
     public TracksActivityFragment() {}
@@ -22,17 +24,27 @@ public class TracksActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_songs, container, false);
 
-        RecyclerView tracksList = (RecyclerView) rootView.findViewById(R.id.track_list);
+        mTracksList = (RecyclerView) rootView.findViewById(R.id.track_list);
         mTracksAdapter = new TopTracksAdapter();
-        tracksList.addItemDecoration(new SimpleDividerItemDecoration(
+        mTracksList.addItemDecoration(new SimpleDividerItemDecoration(
                 getResources().getDrawable(R.drawable.line_divider)));
-        tracksList.setAdapter(mTracksAdapter);
-        tracksList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mTracksList.setAdapter(mTracksAdapter);
+        mTracksList.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mNoTracksContainer = rootView.findViewById(R.id.no_tracks_container);
 
         return rootView;
     }
 
     public void setTracks(ParcelableTrack[] tracks) {
         mTracksAdapter.setTracks(tracks);
+
+        if (tracks.length > 0) {
+            mTracksList.setVisibility(View.VISIBLE);
+            mNoTracksContainer.setVisibility(View.GONE);
+        } else {
+            mTracksList.setVisibility(View.GONE);
+            mNoTracksContainer.setVisibility(View.VISIBLE);
+        }
     }
 }

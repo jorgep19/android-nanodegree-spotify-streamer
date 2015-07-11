@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jpdevs.spotifystreamer.model.ParcelableArtist;
 import com.jpdevs.spotifystreamer.spotify.ArtistsSearchTask;
@@ -22,6 +25,8 @@ public class MainActivityFragment extends Fragment {
     private ParcelableArtist[] mSearchResults;
 
     private View mNoResults;
+    private TextView mNoResultMsg;
+    private ImageView mNoResultsImg;
     private RecyclerView mSearchResultsList;
     private ArtistsSearchAdapter mSearchAdapter;
     private SpotifyController mSpotifyController;
@@ -38,10 +43,12 @@ public class MainActivityFragment extends Fragment {
         mSearchResultsList = (RecyclerView) rootView.findViewById(R.id.search_results);
         mSearchResultsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mSearchResultsList.addItemDecoration(new SimpleDividerItemDecoration(
-                    getActivity().getResources().getDrawable(R.drawable.line_divider)));
+                getActivity().getResources().getDrawable(R.drawable.line_divider)));
         mSearchAdapter = new ArtistsSearchAdapter();
         mSearchResultsList.setAdapter(mSearchAdapter);
         mSpotifyController = new SpotifyController();
+        mNoResultMsg = (TextView) rootView.findViewById(R.id.no_results_msg);
+        mNoResultsImg = (ImageView) rootView.findViewById(R.id.no_results_img);
 
         final boolean isRecreating = savedInstanceState != null;
         if(isRecreating){
@@ -57,14 +64,17 @@ public class MainActivityFragment extends Fragment {
 
 
         searchBox.setOnQueryTextListener(new ArtistQueryListener(new ArtistQueryListener.SearchQueryListener() {
-            private boolean flag = isRecreating;
+            private boolean mflag = isRecreating;
+            private String mCurrentQuery;
 
             @Override
             public void performSearch(String query) {
+                mCurrentQuery = query;
+
                 // this flag prevents from trying to search when recreating the fragment because of
                 // change of state. It instead uses the search results stored on the savedState
-                if (flag) {
-                    flag = false;
+                if (mflag) {
+                    mflag = false;
                     update(mSearchResults);
                     return;
                 }
@@ -88,6 +98,14 @@ public class MainActivityFragment extends Fragment {
                     // when no results show the appropriate message on the screen
                     mNoResults.setVisibility(View.VISIBLE);
                     mSearchResultsList.setVisibility(View.GONE);
+
+                    if (TextUtils.isEmpty(mCurrentQuery)) {
+                        mNoResultMsg.setText(getString(R.string.lets_search));
+                        mNoResultsImg.setImageDrawable(getResources().getDrawable(R.drawable.music));
+                    } else {
+                        mNoResultMsg.setText(String.format("%s %s", getString(R.string.no_result_msg), mCurrentQuery));
+                        mNoResultsImg.setImageDrawable(getResources().getDrawable(R.drawable.broken_guitar));
+                    }
                 }
             }
         }));
@@ -108,5 +126,7 @@ public class MainActivityFragment extends Fragment {
         mSearchResultsList = null;
         mSearchAdapter = null;
         mSpotifyController = null;
+        mNoResultMsg = null;
+        mNoResultsImg = null;
     }
 }

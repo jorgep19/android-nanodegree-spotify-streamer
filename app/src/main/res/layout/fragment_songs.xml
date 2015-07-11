@@ -8,20 +8,21 @@
         style="@style/vertical_list"/>
 
     <LinearLayout
-        android:id="@id/no_results_container"
+        android:id="@id/no_tracks_container"
+        android:visibility="gone"
         style="@style/empty_list_msg_container">
         <ImageView
             android:id="@id/no_results_img"
-            android:src="@drawable/music"
+            android:src="@drawable/broken_guitar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/no_search_results" />
+            android:contentDescription="@string/no_tracks_msg" />
         <TextView
             android:id="@id/no_results_msg"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/no_tracks_msg"/>
     </LinearLayout>
-
 </LinearLayout>

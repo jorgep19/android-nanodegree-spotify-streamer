@@ -19,4 +19,5 @@
     <item name="track_list" type="id"/>
     <item name="album_img" type="id"/>
     <item name="track_name" type="id"/>
+    <item name="no_tracks_container" type="id"/>
 </resources>
