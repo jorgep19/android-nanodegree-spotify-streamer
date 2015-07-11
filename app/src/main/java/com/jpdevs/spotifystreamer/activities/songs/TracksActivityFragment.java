@@ -42,12 +42,6 @@ public class TracksActivityFragment extends Fragment {
                 getResources().getDrawable(R.drawable.line_divider)));
         tracksList.setAdapter(mTracksAdapter);
         tracksList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        new SpotifyController().geTopTracksTask(new ArtistTopSongsTask.TopSongsListener() {
-            @Override
-            public void reportTopSongs(ParcelableTrack[] topTracks) {
-                mTracksAdapter.setTracks(topTracks);
-            }
-        }).execute(getArguments().getString(DATA_ARTIST_ID));
 
         return rootView;
     }

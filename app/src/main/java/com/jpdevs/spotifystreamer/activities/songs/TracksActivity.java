@@ -37,21 +37,23 @@ public class TracksActivity extends AppCompatActivity {
         // tool bar setup
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(artist.getName());
-
         loadBackdrop(artist.getProfileImgUrl());
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.list_container, TracksActivityFragment.newInstance(artist.getId()))
-                .commit();
 
-//        // setup list from bundle
-//        ((TracksActivityFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.tracks_fragment))
-//                .setTracks(topTracks);
+        // setup list from bundle
+        new SpotifyController().geTopTracksTask(new ArtistTopSongsTask.TopSongsListener() {
+            @Override
+            public void reportTopSongs(ParcelableTrack[] topTracks) {
+                ((TracksActivityFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.tracks_fragment))
+                        .setTracks(topTracks);
+            }
+        }).execute(artist.getId());
     }
 
     @Override
