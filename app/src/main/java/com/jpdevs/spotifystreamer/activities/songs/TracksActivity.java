@@ -1,11 +1,10 @@
 package com.jpdevs.spotifystreamer.activities.songs;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -15,15 +14,13 @@ import com.jpdevs.spotifystreamer.model.ParcelableArtist;
 import com.jpdevs.spotifystreamer.model.ParcelableTrack;
 import com.jpdevs.spotifystreamer.spotify.ArtistTopSongsTask;
 import com.jpdevs.spotifystreamer.spotify.SpotifyController;
-import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
-import kaaes.spotify.webapi.android.models.Track;
 
 public class TracksActivity extends AppCompatActivity {
     public static final String EXTRA_ARTIST = "artist_data";
+    public static final String DATA_TRACKS = "top_tracks";
+
+    private ParcelableTrack[] mTopTracks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +42,35 @@ public class TracksActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(artist.getName());
         loadBackdrop(artist.getProfileImgUrl());
 
-        // setup list from bundle
-        new SpotifyController().geTopTracksTask(new ArtistTopSongsTask.TopSongsListener() {
+        // Load top tracks
+        ArtistTopSongsTask.TopSongsListener listener = new ArtistTopSongsTask.TopSongsListener() {
             @Override
             public void reportTopSongs(ParcelableTrack[] topTracks) {
+                mTopTracks = topTracks;
                 ((TracksActivityFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.tracks_fragment))
-                        .setTracks(topTracks);
+                        .setTracks(mTopTracks);
             }
-        }).execute(artist.getId());
+        };
+        if(savedInstanceState == null) {
+            new SpotifyController().geTopTracksTask(listener).execute(artist.getId());
+        } else {
+            Parcelable[] parcels = savedInstanceState.getParcelableArray(DATA_TRACKS);
+
+            if(parcels != null) {
+                mTopTracks = new ParcelableTrack[parcels.length];
+                for (int i = 0; i < parcels.length; ++i){
+                    mTopTracks[i] = (ParcelableTrack) parcels[i];
+                }
+            }
+            listener.reportTopSongs(mTopTracks);
+        }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArray(DATA_TRACKS, mTopTracks);
     }
 
     @Override
