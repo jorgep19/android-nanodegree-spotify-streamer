@@ -33,6 +33,7 @@ public class ArtistQueryListener implements SearchView.OnQueryTextListener {
     public boolean onQueryTextChange(String s) {
         mCurrentString  = s;
 
+        // mShouldSearch is a flag to limit the search request to one per second
         if (mShouldSearch) {
             mShouldSearch = false;
             mListener.performSearch(s);

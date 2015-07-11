@@ -31,6 +31,7 @@ public class ParcelableTrack implements Parcelable {
         mAlbumIconUrl = null;
 
         if(track.album.images.size() > 0) {
+            // get the second smallest or the smallest image for the cover icon
             int imgIndex = track.album.images.size() > 1 ?
                     track.album.images.size() - 2 :
                     track.album.images.size() - 1;

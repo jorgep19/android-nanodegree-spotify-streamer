@@ -61,6 +61,8 @@ public class MainActivityFragment extends Fragment {
 
             @Override
             public void performSearch(String query) {
+                // this flag prevents from trying to search when recreating the fragment because of
+                // change of state. It instead uses the search results stored on the savedState
                 if (flag) {
                     flag = false;
                     update(mSearchResults);
@@ -83,6 +85,7 @@ public class MainActivityFragment extends Fragment {
 
                     mSearchAdapter.updateArtists(artistsFound);
                 } else {
+                    // when no results show the appropriate message on the screen
                     mNoResults.setVisibility(View.VISIBLE);
                     mSearchResultsList.setVisibility(View.GONE);
                 }

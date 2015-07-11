@@ -10,23 +10,9 @@ import android.view.ViewGroup;
 
 import com.jpdevs.spotifystreamer.R;
 import com.jpdevs.spotifystreamer.model.ParcelableTrack;
-import com.jpdevs.spotifystreamer.spotify.ArtistTopSongsTask;
-import com.jpdevs.spotifystreamer.spotify.SpotifyController;
 import com.jpdevs.spotifystreamer.utils.SimpleDividerItemDecoration;
 
 public class TracksActivityFragment extends Fragment {
-    private static final String DATA_ARTIST_ID = "artist_id";
-
-    public static TracksActivityFragment newInstance(String artistId) {
-        TracksActivityFragment frag = new TracksActivityFragment();
-
-        Bundle args = new Bundle();
-        args.putString(DATA_ARTIST_ID, artistId);
-        frag.setArguments(args);
-
-        return frag;
-    }
-
     private TopTracksAdapter mTracksAdapter;
 
     public TracksActivityFragment() {}
