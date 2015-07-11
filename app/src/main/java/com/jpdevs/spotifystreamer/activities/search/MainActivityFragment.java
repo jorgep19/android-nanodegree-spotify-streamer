@@ -9,7 +9,6 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.jpdevs.spotifystreamer.model.ParcelableArtist;
 import com.jpdevs.spotifystreamer.spotify.ArtistsSearchTask;
@@ -22,7 +21,7 @@ public class MainActivityFragment extends Fragment {
 
     private ParcelableArtist[] mSearchResults;
 
-    private ImageView mNoResults;
+    private View mNoResults;
     private RecyclerView mSearchResultsList;
     private ArtistsSearchAdapter mSearchAdapter;
     private SpotifyController mSpotifyController;
@@ -35,7 +34,7 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         SearchView searchBox = (SearchView) rootView.findViewById(R.id.search_box);
-        mNoResults = (ImageView) rootView.findViewById(R.id.no_results);
+        mNoResults = rootView.findViewById(R.id.no_results);
         mSearchResultsList = (RecyclerView) rootView.findViewById(R.id.search_results);
         mSearchResultsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mSearchResultsList.addItemDecoration(new SimpleDividerItemDecoration(
@@ -78,7 +77,7 @@ public class MainActivityFragment extends Fragment {
             }
 
             private void update(ParcelableArtist[] artistsFound) {
-                if (artistsFound.length > 0) {
+                if (artistsFound != null && artistsFound.length > 0) {
                     mNoResults.setVisibility(View.GONE);
                     mSearchResultsList.setVisibility(View.VISIBLE);
 
