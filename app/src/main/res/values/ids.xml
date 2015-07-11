@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Artist Search Activity-->
+    <item name="search_fragment" type="id"/>
+    <item name="search_box" type="id"/>
+    <item name="search_results" type="id"/>
+    <item name="no_results_container" type="id"/>
+    <item name="no_results_img" type="id"/>
+    <item name="no_results_msg" type="id"/>
+
+    <!-- Top Tracks Activity-->
+    <item name="app_bar" type="id"/>
+    <item name="collapsing_toolbar" type="id"/>
+    <item name="backdrop" type="id"/>
+    <item name="toolbar" type="id"/>
+    <item name="tracks_fragment" type="id"/>
+</resources>

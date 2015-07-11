@@ -18,9 +18,4 @@
         <item name="colorAccent">@color/lime</item>
         <item name="android:windowBackground">@color/dark_blue</item>
     </style>
-
-    <style name="Theme.AppTheme.SearchView" parent="Widget.AppCompat.SearchView">
-        <item name="searchIcon">@drawable/ic_search</item>
-        <item name="closeIcon">@drawable/ic_clear</item>
-    </style>
 </resources>

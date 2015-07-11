@@ -11,6 +11,6 @@
     <dimen name="tile_text_left_padding">72dp</dimen>
     <dimen name="icon_dim">45dp</dimen>
 
-
+    <!-- Collapsing toolbar -->
     <dimen name="detail_backdrop_height">256dp</dimen>
 </resources>
